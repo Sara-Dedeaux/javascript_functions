@@ -119,13 +119,15 @@ makeWithdrawal(600);
 
 function makeDeposit(depositAmount){
     console.log(`MAKE DEPOSIT---current balance: $${balance}`)
-
+    
     balance+=depositAmount;
     balance.toFixed(2)
     console.log(`balance after deposit: $${balance}`)
-
+    
 }//END makeDeposit
 
+//TODO Use if-else Statements: Use if-else statements to ensure the withdrawal amount does not exceed the balance.
+//* Output Results: Use console.log to display the updated balance after each operation.
 function makeWithdrawal(withdrawAmount){
 
     console.log(`MAKE WITHDRAWAL--current balance: $${balance}`)
@@ -152,30 +154,61 @@ function checkBalance(){
 }//END checkBalance
 
 
-//TODO Use if-else Statements: Use if-else statements to ensure the withdrawal amount does not exceed the balance.
-//* Output Results: Use console.log to display the updated balance after each operation.
  
  
 //! Simple To-Do List
 //? Create a program that allows the user to add and display tasks in a to-do list.
- 
+consoleHeader("Simple To-Do List")
 //TODO Define an Array: Define an array to store the tasks.
+let task_arr=[];
+addTask("Take Out Trash");
+addTask("Clean out car");
+removeTask("Take Out Trash");
+removeTask("clean out car");
+addTask("make grocery list");
+
 //TODO Create Functions: Create functions to add a task and display the to-do list.
 //TODO Use if-else Statements and Loops: Use if-else statements and loops within the functions to handle the tasks.
 //* Output Results: Use console.log to display the to-do list after each operation.
+
+function addTask(taskName){
+    task_arr.push(taskName); 
+    console.log(task_arr);
+
+
+}//END addTask FUNCTION
+
+
  
 //! BONUS: Be able to remove a task o.o
+function removeTask(taskName){
+    
+    for (let i=0; i<task_arr.length; i++){
+
+        if (taskName.toUpperCase==task_arr[i].toUpperCase){
+            task_arr.splice(task_arr[i],1);
+            console.log(`${taskName} has been removed from list`)
+        }else{
+            console.log("Error: task not found on list");
+        }//end if/else
+        console.log(task_arr);
+    }//END FOR LOOP 
+}//END removeTask
  
  
  
 //! Temperature Converter
 //? Create a program that converts temperatures between Celsius, Fahrenheit, and Kelvin.
- 
+ consoleHeader("Temperature Converter")
 //TODO Define Variables: Allow the user to input a temperature value and the unit they want to convert from.
+let tempNum=100;
+let tempType= "f"
+
+tempConverter(tempNum,tempType)
+
 //TODO Create Functions: Create functions to convert between Celsius, Fahrenheit, and Kelvin.
 //? (Hint: There will be two arguements temperature value and unit letter (Celsius, Farenheit, Kelvin))
 //? ex. If I provide 25 and "C" I want the Kelvin and Farenheit temperature
- 
 //* KelvinToCelsius conversion:
 //* kelvinNum - 273.15
  
@@ -191,4 +224,44 @@ function checkBalance(){
  
 //TODO  Use if-else Statements: Use if-else statements to determine which conversion to perform based on the user's input.
 //* Output Results: Use console.log to display the converted temperature.
+
+function tempConverter(tempValue, tempUnit){
+    
+
+   console.log(`Temperature entered: ${tempValue} degrees ${tempUnit}`)
+
+    let tempUnitCap=tempUnit.toUpperCase();   
+    let celsiusTemp;
+    let kelvinTemp;
+    let farenheitTemp;
+
+    if (tempUnitCap=="F" || tempUnitCap=="FAHRENHEIT"){
+        farenheitTemp=tempValue;
+        celsiusTemp=(farenheitTemp-32) * 5/9;
+        kelvinTemp=celsiusTemp + 273.15;
+        console.log(`Temp in Celsius: ${celsiusTemp}`);
+        console.log(`Temp in Kelvin: ${kelvinTemp}`);
+
+    }else if(tempUnitCap=="C" || tempUnitCap=="CELSIUS"){
+        celsiusTemp=tempValue;
+        kelvinTemp=celsiusTemp + 273.15;
+        farenheitTemp=(celsiusTemp * 9/5) + 32;
+        console.log(`Temp in Kelvin: ${kelvinTemp}`);
+        console.log(`Temp in Farenheit: ${farenheitTemp}`);
+
+
+    }else if(tempUnitCap=="K" || tempUnitCap=="KELVIN"){
+        kelvinTemp=tempValue;
+        celsiusTemp= kelvinTemp - 273.15;
+        farenheitTemp=(celsiusTemp * 9/5) + 32;
+        console.log(`Temp in Celsius: ${celsiusTemp}`);
+        console.log(`Temp in Farenheit: ${farenheitTemp}`);
+
+    }else{
+        console.log("Error: Temperature Unit not recognized")
+    }//END ELSE IF TREE
+
+    
+}//END FUNCTION tempConverter
+
  
