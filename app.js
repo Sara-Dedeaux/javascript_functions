@@ -122,7 +122,7 @@ function makeDeposit(depositAmount){
     
     balance+=depositAmount;
     balance.toFixed(2)
-    console.log(`balance after deposit: $${balance}`)
+    checkBalance();
     
 }//END makeDeposit
 
@@ -143,7 +143,7 @@ function makeWithdrawal(withdrawAmount){
     }
     console.log(`withdrawal amount: $${withdrawAmount}`)
     balance.toFixed(2)
-    console.log(`balance after withdrawal: $${balance}`)
+    checkBalance();
 
 }//END makeWithdrawal
 
@@ -173,10 +173,22 @@ addTask("make grocery list");
 
 function addTask(taskName){
     task_arr.push(taskName); 
-    console.log(task_arr);
+    displayTask(task_arr);
 
 
 }//END addTask FUNCTION
+
+function displayTask(list){
+
+    console.log("Items on list:")
+    for(let i=0; i<list.length; i++){
+        console.log(list[i])
+
+    }//END FOR
+
+    console.log(list);
+
+}//END displayTask
 
 
  
@@ -191,8 +203,10 @@ function removeTask(taskName){
         }else{
             console.log("Error: task not found on list");
         }//end if/else
-        console.log(task_arr);
+        
     }//END FOR LOOP 
+
+    displayTask(task_arr);
 }//END removeTask
  
  
@@ -201,8 +215,8 @@ function removeTask(taskName){
 //? Create a program that converts temperatures between Celsius, Fahrenheit, and Kelvin.
  consoleHeader("Temperature Converter")
 //TODO Define Variables: Allow the user to input a temperature value and the unit they want to convert from.
-let tempNum=100;
-let tempType= "f"
+let tempNum=0;
+let tempType= "c"
 
 tempConverter(tempNum,tempType)
 
@@ -226,8 +240,7 @@ tempConverter(tempNum,tempType)
 //* Output Results: Use console.log to display the converted temperature.
 
 function tempConverter(tempValue, tempUnit){
-    
-
+   
    console.log(`Temperature entered: ${tempValue} degrees ${tempUnit}`)
 
     let tempUnitCap=tempUnit.toUpperCase();   
@@ -237,31 +250,52 @@ function tempConverter(tempValue, tempUnit){
 
     if (tempUnitCap=="F" || tempUnitCap=="FAHRENHEIT"){
         farenheitTemp=tempValue;
-        celsiusTemp=(farenheitTemp-32) * 5/9;
-        kelvinTemp=celsiusTemp + 273.15;
-        console.log(`Temp in Celsius: ${celsiusTemp}`);
-        console.log(`Temp in Kelvin: ${kelvinTemp}`);
+        celsiusTemp= fahToCel(farenheitTemp);
+        kelvinTemp= celToKel(celsiusTemp);
+       
 
     }else if(tempUnitCap=="C" || tempUnitCap=="CELSIUS"){
         celsiusTemp=tempValue;
-        kelvinTemp=celsiusTemp + 273.15;
-        farenheitTemp=(celsiusTemp * 9/5) + 32;
-        console.log(`Temp in Kelvin: ${kelvinTemp}`);
-        console.log(`Temp in Farenheit: ${farenheitTemp}`);
-
+        kelvinTemp=celToKel(celsiusTemp);
+        farenheitTemp=celToFah(celsiusTemp);
 
     }else if(tempUnitCap=="K" || tempUnitCap=="KELVIN"){
         kelvinTemp=tempValue;
-        celsiusTemp= kelvinTemp - 273.15;
-        farenheitTemp=(celsiusTemp * 9/5) + 32;
-        console.log(`Temp in Celsius: ${celsiusTemp}`);
-        console.log(`Temp in Farenheit: ${farenheitTemp}`);
-
+        celsiusTemp= kelToCel(kelvinTemp)
+        farenheitTemp=celToFah(celsiusTemp)
+        
     }else{
         console.log("Error: Temperature Unit not recognized")
     }//END ELSE IF TREE
 
     
 }//END FUNCTION tempConverter
+
+function fahToCel(fahTemp){
+   let celsiusTemp=(fahTemp-32) * 5/9;
+    console.log(`Temp in Celsius: ${celsiusTemp}`);
+    return celsiusTemp
+    
+}//END fahToCel
+
+function celToKel(celTemp){
+    let kelvinTemp= celTemp + 273.15;
+    console.log(`Temp in Kelvin: ${kelvinTemp}`);
+    return kelvinTemp
+}//End celToKel
+
+function celToFah(celTemp){
+    let fahTemp=(celTemp * 9/5) + 32;
+    console.log(`Temp in Farenheit: ${fahTemp}`);
+    return fahTemp;
+}//END celToFah
+
+function kelToCel(kelTemp){
+    let celTemp= kelTemp-273.15;
+    console.log(`Temp in Celsius: ${celTemp}`);
+    return celTemp;
+
+}//END kelToCel
+
 
  
