@@ -207,6 +207,9 @@ function removeTask(taskName){
     }//END FOR LOOP 
 
     displayTask(task_arr);
+
+ 
+
 }//END removeTask
  
  
@@ -296,6 +299,118 @@ function kelToCel(kelTemp){
     return celTemp;
 
 }//END kelToCel
+
+
+consoleHeader("Music Playlist Manager"); 
+//! Music Playlist Manager
+//? Create a program that allows the user to manage a playlist of songs.
+//TODO Define an Array: Define an array to store the song titles.
+
+let playlist_Arr=[];
+//TODO Create Functions: Create functions to add a song, remove a song, and display the playlist.
+
+addSong("songOne");
+addSong("SONGtWO");
+addSong("songthree");
+removeSong("SONGONE")
+
+
+function addSong(userInput){
+    console.log(`Request addition of: "${userInput}" `)
+
+    playlist_Arr.push(userInput);
+    displayPlaylist();
+
+}//END FUNCTION addSong
+
+function removeSong(userInput){
+ 
+    console.log(`Request for removal of: "${userInput}" `)
+
+    for(let i=0; i<playlist_Arr.length; i++){
+
+        if(userInput.toUpperCase()==playlist_Arr[i].toUpperCase()){
+
+            playlist_Arr.splice(playlist_Arr[i],1);
+            console.log(`${userInput} has been removed from the list. `)
+        }//end if 
+        
+
+    }//END FOR LOOP 
+
+    displayPlaylist();
+}//END FUNCTION removeSong
+
+function displayPlaylist(){
+    console.log("Songs on Playlist:")
+    for(let i=0; i<playlist_Arr.length; i++){
+        console.log(playlist_Arr[i]);
+    }//END FOR LOOP
+
+    console.log(playlist_Arr);
+
+}//END FUNCTION displayPlaylist
+
+//TODO Use if-else Statements and Loops: Use if-else statements and loops within the functions to handle the operations.
+//* Output Results: Use console.log to display the playlist after each operation.
+ 
+ 
+//! Daily Temperatures
+//? Create a program that processes daily temperature readings, calculates the average temperature, and identifies the highest and lowest temperatures.
+ 
+//TODO Predefine an Array of Temperatures: Start with an array of numbers representing daily temperatures.
+let temperatures = [90, 75, 79, 72, 78, 85, 84];
+//TODO Calculate the Average Temperature: Write a function to calculate the average of the temperatures.
+//TODO Find the Highest Temperature: Write a function to find the highest temperature in the array.
+//TODO Find the Lowest Temperature: Write a function to find the lowest temperature in the array.
+
+let tempAverage=findAverage(temperatures); 
+let highestTemp= findMax(temperatures);
+let lowestTemp= findMin(temperatures);
+
+console.log(`Temp Average ${tempAverage}`);
+console.log(`Highest Temp ${highestTemp}`);
+console.log(`Lowest Temp ${lowestTemp}`); 
+
+
+function findAverage(nums){
+    let numSum=0;
+
+    for(let i=0; i<nums.length; i++){
+       numSum +=nums[i]; 
+    }//END FOR LOOP 
+    let average=numSum/temperatures.length; 
+    return average; 
+
+}//END calcTemp FUNCTION
+
+function findMax(nums){
+    let maxNum=0; 
+
+    for(let i=0; i<nums.length; i++){
+        if(nums[i]>maxNum){
+            maxNum=nums[i];
+        }//END IF
+       
+    }//END FOR LOOP 
+
+    return maxNum;
+}//END FUNCTION findMax
+
+function findMin(nums){
+
+    let minNum=findMax(nums);
+
+    for(let i=0; i<nums.length; i++){
+        if(nums[i]<minNum){
+            minNum=nums[i];
+        }//END IF
+       
+    }//END FOR LOOP 
+
+   return minNum;
+}//END FUNCTION findMax
+
 
 
  
