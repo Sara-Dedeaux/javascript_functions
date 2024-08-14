@@ -106,16 +106,20 @@ function giveLetterGrade(gradeNum){
  
 //! Bank Account Manager
 //? Create a program that allows a user to manage a simple bank account, including depositing, withdrawing, and checking the balance.
- consoleHeader("Bank Account Manager")
+//TODO Create Functions: Create functions to deposit money, withdraw money, and check the balance.
 //TODO Define Variables: Start with a balance variable.
-let balance=0;
+//TODO Use if-else Statements: Use if-else statements to ensure the withdrawal amount does not exceed the balance.
+//* Output Results: Use console.log to display the updated balance after each operation.
+ 
+consoleHeader("Bank Account Manager")
 
+
+let balance=0;
 makeDeposit(500);
 makeWithdrawal(100);
 checkBalance();
 makeWithdrawal(600);
 
-//TODO Create Functions: Create functions to deposit money, withdraw money, and check the balance.
 
 function makeDeposit(depositAmount){
     console.log(`MAKE DEPOSIT---current balance: $${balance}`)
@@ -126,8 +130,7 @@ function makeDeposit(depositAmount){
     
 }//END makeDeposit
 
-//TODO Use if-else Statements: Use if-else statements to ensure the withdrawal amount does not exceed the balance.
-//* Output Results: Use console.log to display the updated balance after each operation.
+
 function makeWithdrawal(withdrawAmount){
 
     console.log(`MAKE WITHDRAWAL--current balance: $${balance}`)
